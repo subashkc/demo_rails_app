@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<% if unauthorized_message %>
+<div class="alert alert-danger alert-dismissible" role="alert" id="notice">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <%= unauthorized_message %>    
+</div>
+<% end %>
+
+<h1>Listing Stories</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <!-- <th>User</th> -->
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stories.each do |story| %>
+      <tr>
+        <td><%= story.title %></td>
+        <td><%= truncate(story.content, length: 500) %></td>
+        <td>
+          <%= link_to story, title: "Read full Story" do %>
+            <span class="glyphicon glyphicon-eye-open gylphs-2x"></span>
+          <% end %>          
+        </td>
+        <td>
+          <%= link_to edit_story_path(story), title: "Edit" do %>
+            <span class="glyphicon glyphicon-edit gylphs-2x"></span>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to story, method: :delete, data: { confirm: 'Are you sure?' }, title: "Delete Story" do %>
+            <span class="glyphicon glyphicon-trash gylphs-2x"></span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Story', new_story_path, class: "btn btn-primary" %>

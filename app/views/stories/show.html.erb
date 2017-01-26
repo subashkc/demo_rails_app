@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<% if unauthorized_message %>
+<div class="alert alert-danger alert-dismissible" role="alert" id="notice">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <%= unauthorized_message %>    
+</div>
+<% end %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @story.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @story.content %>
+</p>
+
+
+<%= link_to 'Edit', edit_story_path(@story), class: "btn btn-primary" %><%= link_to 'Back', stories_path, class: "btn btn-default" %>
